@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<launch>
+   <!-- these are the arguments you can pass this launch file, for example paused:=true -->
+   <include file="$(find omni_control)/launch/parameter.launch" />
+   <arg name="debug" default="false" />
+   <arg name="gui" default="true" />
+   <arg name="headless" default="false" />
+   <arg name="paused" default="true" />
+   <arg name="use_sim_time" default="true" />
+   <arg name="height" default="0" />
+   
+   <!-- get world -->
+   <include file="$(find gazebo_ros)/launch/empty_world.launch">
+      <arg name="debug" value="$(arg debug)" />
+      <arg name="gui" value="$(arg gui)" />
+      <arg name="paused" value="$(arg paused)" />
+      <arg name="use_sim_time" value="$(arg use_sim_time)" />
+      <arg name="headless" value="$(arg headless)" />
+      <arg name="world_name" value="worlds/empty.world" />
+      <!--arg
+			name="physics"
+			value="simbody"
+		/-->
+   </include>
+<!-- Load the URDF into the ROS Parameter Server -->
+    <param name="robot_description"
+        command="$(find xacro)/xacro.py '$(find omni_description)/xacro/omni.urdf.xacro'" />
+    <!-- spawn robot -->
+    <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" args="-urdf -model robot -param robot_description -model omnibase -z $(arg height)" ns="omnibase" />
+   
+    <!-- run controllers -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen" ns="omnibase">
+      <!--<param name="publish_frequency" type="double" value="30.0" />-->
+      <remap from="/joint_states" to="/omnibase/joint_states" />
+   </node>
+</launch>
+ 
+
+
+

@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<robot
+	xmlns:xacro="http://www.ros.org/wiki/xacro"
+	name="open_base"
+>
+
+	<xacro:include filename="$(find omni_description)/xacro/rim.urdf.xacro"/>
+
+	<!-- import all gazebo-customization elements, including gazebo colors -->
+	<xacro:include filename="$(find omni_description)/xacro/main.plugin.xacro" />
+	<link name="origin_link"/>
+	<link name="base_link">
+
+	<inertial>
+
+		<mass value="9.82868080625"/>
+		<inertia
+			ixx="0.06362454783"
+			ixy="0"
+			ixz="0"
+			iyy="0.06362454783"
+			iyz="0"
+			izz="0.12331130197"
+		/>
+
+	</inertial>
+	<visual>
+
+		<geometry>
+
+			<mesh filename="package://omni_description/mesh/base.stl" scale="5 5 5"/>
+
+		</geometry>
+		<material name="base_material">
+
+			<color rgba="1 1 1 1"/>
+
+		</material>
+
+	</visual>
+	<collision>
+
+		<geometry>
+
+			<mesh filename="package://omni_description/mesh/base.stl"/>
+
+		</geometry>
+
+	</collision>
+
+	</link>
+	<joint
+		name="base_joint"
+		type="fixed"
+	>
+
+		<parent link="origin_link" />
+		<child link="base_link" />
+		<origin
+			xyz="0 0 0.09525"
+		/>
+
+	</joint>
+	<xacro:rim_macro
+		name="left"
+		color="0.3 0 0"
+		xyz="-0.173205081 0.1 0"
+		rpy="1.570796326794896 0 1.047197551196597"
+	/>
+	<xacro:rim_macro
+		name="back"
+		color="0 0.3 0"
+		xyz="0 -0.2 0"
+		rpy="1.570796326794896 0 3.141592653589793"
+	/>
+	<xacro:rim_macro
+		name="right"
+		color="0 0 0.3"
+		xyz="0.173205081 0.1 0"
+		rpy="1.570796326794896 0 -1.047197551196597"
+	/>
+
+<!-- lms100 laser_1 -->
+	<link name="laser_1">
+		<inertial>
+			<mass value="1e-5" />
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+		</inertial>
+
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://omni_description/mesh/lms100.dae" />
+			</geometry>
+		</visual>
+
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<box size="0.1 0.1 0.1" />
+			</geometry>
+		</collision>
+	</link>
+
+	<joint name="laser1_joint" type="fixed">
+		<axis xyz="0 1 0" />
+		<origin xyz="0.05 0.0 0.05" rpy="0 0 0" />
+		<parent link="base_link" />
+		<child link="laser_1" />
+	</joint> 
+<!-- lms100 laser_2 -->
+	<link name="laser_2">
+		<inertial>
+			<mass value="1e-5" />
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+		</inertial>
+
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://omni_description/mesh/lms100.dae" />
+			</geometry>
+		</visual>
+
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<box size="0.1 0.1 0.1" />
+			</geometry>
+		</collision>
+	</link>
+
+	<joint name="laser2_joint" type="fixed">
+		<axis xyz="0 1 0" />
+		<origin xyz="-0.05 0 0.05" rpy="0 0 3.14159" />
+		<parent link="base_link" />
+		<child link="laser_2" />
+	</joint>
+
+
+</robot>
