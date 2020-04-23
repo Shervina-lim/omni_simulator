@@ -2,7 +2,7 @@
 <robot>
 <!-- lms100 -->
 	<gazebo reference="laser_1">
-		<sensor type="ray" name="head_hokuyo_sensor">
+		<sensor type="ray" name="head_hokuyo_sensor1">
 			<pose>0 0 0 0 0 0</pose>
 			<visualize>true</visualize>
 			<update_rate>50</update_rate>
@@ -36,7 +36,7 @@
 		</sensor>
 	</gazebo><!-- lms100 -->
 	<gazebo reference="laser_2">
-		<sensor type="ray" name="head_hokuyo_sensor">
+		<sensor type="ray" name="head_hokuyo_sensor2">
 			<pose>0 0 0 0 0 0</pose>
 			<visualize>true</visualize>
 			<update_rate>50</update_rate>
