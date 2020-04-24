@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <launch>
 
 	<!--param
@@ -6,7 +7,7 @@
 	/-->
 	<param
 		name="omnibase/robot_description"
-		command="$(find xacro)/xacro '$(find omni_description)/xacro/omni.urdf.xacro'"
+		command="$(find xacro)/xacro '$(find omni_description)/xacro/omni_dummy.urdf.xacro'"
 	/>
 	<!--param
 		name="omnibase/parameter/control/D"

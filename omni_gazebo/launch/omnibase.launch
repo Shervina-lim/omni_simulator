@@ -2,6 +2,7 @@
 <launch>
    <!-- these are the arguments you can pass this launch file, for example paused:=true -->
    <include file="$(find omni_control)/launch/parameter.launch" />
+
    <arg name="debug" default="false" />
    <arg name="gui" default="true" />
    <arg name="headless" default="false" />
@@ -22,9 +23,10 @@
 			value="simbody"
 		/-->
    </include>
-<!-- Load the URDF into the ROS Parameter Server -->
-    <param name="robot_description"
-        command="$(find xacro)/xacro.py '$(find omni_description)/xacro/omni.urdf.xacro'" />
+
+    <!-- Already defined in parameter.launch. Load the URDF into the ROS Parameter Server -->
+    <!-- param name="robot_description" command="$(find xacro)/xacro.py '$(find omni_description)/xacro/omni_dummy.urdf.xacro'" /-->
+
     <!-- spawn robot -->
     <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" args="-urdf -model robot -param robot_description -model omnibase -z $(arg height)" ns="omnibase" />
    

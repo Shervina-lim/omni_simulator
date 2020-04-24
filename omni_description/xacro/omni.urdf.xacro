@@ -8,7 +8,7 @@
 
 	<!-- import all gazebo-customization elements, including gazebo colors -->
 	<xacro:include filename="$(find omni_description)/xacro/main.plugin.xacro" />
-	<link name="origin_link"/>
+	<!--link name="origin_link"/-->
 	<link name="base_link">
 
 	<inertial>
@@ -49,7 +49,7 @@
 	</collision>
 
 	</link>
-	<joint
+	<!--joint
 		name="base_joint"
 		type="fixed"
 	>
@@ -60,7 +60,7 @@
 			xyz="0 0 0.09525"
 		/>
 
-	</joint>
+	</joint-->
 	<xacro:rim_macro
 		name="left"
 		color="0.3 0 0"
