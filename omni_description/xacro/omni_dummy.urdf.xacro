@@ -7,14 +7,14 @@
 
   <link name="move_base">
     <inertial>
-      <mass value="9.82868080625"/>
+      <mass value="200"/>
       <inertia
-	ixx="0.06362454783"
+	ixx="2.2"
 	ixy="0"
 	ixz="0"
-	iyy="0.06362454783"
+	iyy="2.2"
 	iyz="0"
-	izz="0.12331130197"
+	izz="4.0"
       />
     </inertial>
     <visual>
@@ -40,14 +40,14 @@
 
   <link name="body">
     <inertial>
-      <mass value="9.82868080625"/>
+      <mass value="10"/>
       <inertia
-	ixx="0.06362454783"
+	ixx="0.19"
 	ixy="0"
 	ixz="0"
-	iyy="0.06362454783"
+	iyy="0.19"
 	iyz="0"
-	izz="0.12331130197"
+	izz="0.11"
       />
     </inertial>
     <visual>
@@ -68,8 +68,42 @@
   <joint name="body_joint" type="fixed">
     <parent link="move_base" />
     <child link="body" />
-    <origin xyz="0 0 0.2"/>
+    <origin xyz="0 0 0.25"/>
   </joint>
+
+  <!--link name="force_sensor">
+    <inertial>
+      <mass value="1"/>
+      <inertia
+	ixx="0.02"
+	ixy="0"
+	ixz="0"
+	iyy="0.02"
+	iyz="0"
+	izz="0.01"
+      />
+    </inertial>
+    <visual>
+      <geometry>
+	<cylinder length="0.02" radius="0.05"/>
+      </geometry>
+      <material name="black">
+	<color rgba="0 0 0 1"/>
+      </material>    
+    </visual>
+    <collision>
+      <geometry>
+	<cylinder length="0.02" radius="0.05"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint name="fs_joint" type="revolute">
+    <parent link="body" />
+    <child link="force_sensor" />
+    <origin xyz="0 0 0.23"/>
+    <limit velocity="6.5" effort="1000" lower="0" upper="0" />
+  </joint-->
   
   <link name="laser_1">
     <inertial>
@@ -136,5 +170,9 @@
   <gazebo reference="body">
     <material>Gazebo/White</material>
   </gazebo>
+
+  <!--gazebo reference="force_sensor">
+    <material>Gazebo/Grey</material>
+  </gazebo-->
 
 </robot>

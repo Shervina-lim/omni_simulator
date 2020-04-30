@@ -29,7 +29,7 @@
 					<stddev>0.01</stddev>
 				</noise>
 			</ray>
-			<plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+			<plugin name="gazebo_ros_head_hokuyo_controller1" filename="libgazebo_ros_laser.so">
 				<topicName>/scan1</topicName>
 				<frameName>/laser_1</frameName>
 			</plugin>
@@ -63,22 +63,22 @@
 					<stddev>0.01</stddev>
 				</noise>
 			</ray>
-			<plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+			<plugin name="gazebo_ros_head_hokuyo_controller2" filename="libgazebo_ros_laser.so">
 				<topicName>/scan2</topicName>
 				<frameName>/laser_2</frameName>
 			</plugin>
 		</sensor>
 	</gazebo>
+
 <!-- ros control plugin 
 <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
       <robotNamespace>/omnibase</robotNamespace>
       <legacyModeNS>true</legacyModeNS>
     </plugin>
-  </gazebo> -->
+</gazebo> -->
 
 <!-- Planar move plugin -->
-
 <gazebo>
     <plugin name="object_controller" filename="libgazebo_ros_planar_move.so">
       <commandTopic>/omnibase/cmd_vel</commandTopic>
@@ -88,5 +88,18 @@
       <robotBaseFrame>base_link</robotBaseFrame>
     </plugin>
   </gazebo>
+
+<!-- Force sensor plugin -->
+<!--gazebo reference="fs_joint">
+	<provideFeedback>true</provideFeedback>
+</gazebo>
+
+<gazebo>
+	<plugin name="body_joint_ft_sensor" filename="libgazebo_ros_ft_sensor.so">
+		<updateRate>50.0</updateRate>
+		<topicName>/netft_data</topicName>
+		<jointName>fs_joint</jointName>
+	</plugin>
+</gazebo-->
 
 </robot>
