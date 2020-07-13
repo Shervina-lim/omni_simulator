@@ -1,0 +1,178 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="omni_base">
+
+  <xacro:include filename="$(find omni_description)/xacro/main.plugin.xacro" />
+
+  <link name="base_link"/>
+
+  <link name="move_base">
+    <inertial>
+      <mass value="200"/>
+      <inertia
+	ixx="2.2"
+	ixy="0"
+	ixz="0"
+	iyy="2.2"
+	iyz="0"
+	izz="4.0"
+      />
+    </inertial>
+    <visual>
+      <geometry>
+	<cylinder length="0.1" radius="0.2"/>
+      </geometry>
+      <material name="black">
+	<color rgba="0 0 0 1"/>
+      </material>    
+    </visual>
+    <collision>
+      <geometry>
+	<cylinder length="0.1" radius="0.2"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint name="base_joint" type="fixed">
+    <parent link="base_link" />
+    <child link="move_base" />
+    <origin xyz="0 0 0.05"/>
+  </joint>
+
+  <link name="body">
+    <inertial>
+      <mass value="10"/>
+      <inertia
+	ixx="0.19"
+	ixy="0"
+	ixz="0"
+	iyy="0.19"
+	iyz="0"
+	izz="0.11"
+      />
+    </inertial>
+    <visual>
+      <geometry>
+	<cylinder length="0.4" radius="0.15"/>
+      </geometry>
+      <material name="white">
+	<color rgba="1 1 1 1"/>
+      </material>    
+    </visual>
+    <collision>
+      <geometry>
+	<cylinder length="0.4" radius="0.15"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint name="body_joint" type="fixed">
+    <parent link="move_base" />
+    <child link="body" />
+    <origin xyz="0 0 0.25"/>
+  </joint>
+
+  <!--link name="force_sensor">
+    <inertial>
+      <mass value="1"/>
+      <inertia
+	ixx="0.02"
+	ixy="0"
+	ixz="0"
+	iyy="0.02"
+	iyz="0"
+	izz="0.01"
+      />
+    </inertial>
+    <visual>
+      <geometry>
+	<cylinder length="0.02" radius="0.05"/>
+      </geometry>
+      <material name="black">
+	<color rgba="0 0 0 1"/>
+      </material>    
+    </visual>
+    <collision>
+      <geometry>
+	<cylinder length="0.02" radius="0.05"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint name="fs_joint" type="revolute">
+    <parent link="body" />
+    <child link="force_sensor" />
+    <origin xyz="0 0 0.23"/>
+    <limit velocity="6.5" effort="1000" lower="0" upper="0" />
+  </joint-->
+  
+  <link name="laser_1">
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+	<mesh filename="package://omni_description/mesh/lms100.dae" />
+      </geometry>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+	<box size="0.1 0.1 0.1" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="laser1_joint" type="fixed">
+    <axis xyz="0 1 0" />
+    <origin xyz="0.1 0.05 0.23" rpy="0 0 1.0" />
+    <parent link="body" />
+    <child link="laser_1" />
+  </joint> 
+
+  <link name="laser_2">
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+	<mesh filename="package://omni_description/mesh/lms100.dae" />
+      </geometry>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+	<box size="0.1 0.1 0.1" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="laser2_joint" type="fixed">
+    <axis xyz="0 1 0" />
+    <origin xyz="0.1 -0.05 0.23" rpy="0 0 -1.0" />
+    <parent link="body" />
+    <child link="laser_2" />
+  </joint>
+
+  <gazebo reference="move_base">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <gazebo reference="body">
+    <material>Gazebo/White</material>
+  </gazebo>
+
+  <!--gazebo reference="force_sensor">
+    <material>Gazebo/Grey</material>
+  </gazebo-->
+
+</robot>
