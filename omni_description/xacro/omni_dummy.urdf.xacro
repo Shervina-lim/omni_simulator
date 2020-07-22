@@ -129,7 +129,7 @@
 
   <joint name="laser1_joint" type="fixed">
     <axis xyz="0 1 0" />
-    <origin xyz="0.1 0.05 0.23" rpy="0 0 1.0" />
+    <origin xyz="0.1 0.05 0.23" rpy="0 0 1.57079" />
     <parent link="body" />
     <child link="laser_1" />
   </joint> 
@@ -158,7 +158,7 @@
 
   <joint name="laser2_joint" type="fixed">
     <axis xyz="0 1 0" />
-    <origin xyz="0.1 -0.05 0.23" rpy="0 0 -1.0" />
+    <origin xyz="0.1 -0.05 0.23" rpy="0 0 -1.57079" />
     <parent link="body" />
     <child link="laser_2" />
   </joint>
