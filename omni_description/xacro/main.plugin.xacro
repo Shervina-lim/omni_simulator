@@ -26,8 +26,8 @@
 				</noise>
 			</ray>
 			<plugin name="gazebo_ros_head_hokuyo_controller1" filename="libgazebo_ros_laser.so">
-				<topicName>/scan1</topicName>
-				<frameName>/laser_1</frameName>
+				<topicName>scan1</topicName>
+				<frameName>laser_1</frameName>
 			</plugin>
 		</sensor>
 	</gazebo>
@@ -58,8 +58,8 @@
 				</noise>
 			</ray>
 			<plugin name="gazebo_ros_head_hokuyo_controller2" filename="libgazebo_ros_laser.so">
-				<topicName>/scan2</topicName>
-				<frameName>/laser_2</frameName>
+				<topicName>scan2</topicName>
+				<frameName>laser_2</frameName>
 			</plugin>
 		</sensor>
 	</gazebo>
@@ -68,7 +68,7 @@
 	 <gazebo reference="move_base">
 	  <sensor name="base_bumper" type="contact">
 	    <always_on>1</always_on>
-	    <update_rate>100</update_rate>
+	    <update_rate>20</update_rate>
 	    <contact>
 	      <!-- When using ROS Indigo and Gazebo 2.2.3, the name specified here
 	           must be <link name>_collision. -->
@@ -76,7 +76,7 @@
 	    </contact>
 	    <plugin filename="libgazebo_ros_bumper.so" name="base_bumper">
 	      <always_on>1</always_on>
-	      <update_rate>100</update_rate>
+	      <update_rate>20</update_rate>
 	      <frameName>move_base</frameName>
 	      <bumperTopicName>base_bumper</bumperTopicName>
 	    </plugin>
@@ -96,7 +96,7 @@
 	<gazebo>
 	    <plugin name="object_controller" filename="libgazebo_ros_planar_move.so">
 	      <commandTopic>/omnibase/cmd_vel</commandTopic>
-	      <odometryTopic>/odom</odometryTopic>
+	      <odometryTopic>odom</odometryTopic>
 	      <odometryFrame>odom</odometryFrame>
 	      <odometryRate>20.0</odometryRate>
 	      <robotBaseFrame>base_link</robotBaseFrame>
